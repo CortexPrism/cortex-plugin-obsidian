@@ -1,4 +1,4 @@
-import type { Tool, ToolContext, PluginContext, ToolCallResult } from 'cortex/plugins';
+import type { PluginContext, Tool, ToolCallResult, ToolContext } from './types.ts';
 
 let pluginConfig: Record<string, unknown> = {};
 
@@ -16,8 +16,18 @@ const obsidianReadNoteTool: Tool = {
     name: 'obsidian_read_note',
     description: 'Read a note from the vault',
     params: [
-      { name: 'path', type: 'string', description: 'Path to note relative to vault root', required: true },
-      { name: 'vault_path', type: 'string', description: 'Override default vault path', required: false },
+      {
+        name: 'path',
+        type: 'string',
+        description: 'Path to note relative to vault root',
+        required: true,
+      },
+      {
+        name: 'vault_path',
+        type: 'string',
+        description: 'Override default vault path',
+        required: false,
+      },
     ],
     capabilities: ['fs:read'],
   },
@@ -59,9 +69,19 @@ const obsidianWriteNoteTool: Tool = {
     name: 'obsidian_write_note',
     description: 'Write or update a note',
     params: [
-      { name: 'path', type: 'string', description: 'Path to note relative to vault root', required: true },
+      {
+        name: 'path',
+        type: 'string',
+        description: 'Path to note relative to vault root',
+        required: true,
+      },
       { name: 'content', type: 'string', description: 'Note content (Markdown)', required: true },
-      { name: 'frontmatter', type: 'string', description: 'JSON string of frontmatter key-values', required: false },
+      {
+        name: 'frontmatter',
+        type: 'string',
+        description: 'JSON string of frontmatter key-values',
+        required: false,
+      },
     ],
     capabilities: ['fs:write'],
   },
@@ -89,7 +109,12 @@ const obsidianWriteNoteTool: Tool = {
         };
       }
       const frontmatter = args.frontmatter as string | undefined;
-      const result = { path: notePath, written: true, bytes: content.length, has_frontmatter: !!frontmatter };
+      const result = {
+        path: notePath,
+        written: true,
+        bytes: content.length,
+        has_frontmatter: !!frontmatter,
+      };
       return {
         toolName: 'obsidian_write_note',
         success: true,
@@ -114,8 +139,18 @@ const obsidianSearchVaultTool: Tool = {
     description: 'Search notes in the vault',
     params: [
       { name: 'query', type: 'string', description: 'Search query', required: true },
-      { name: 'max_results', type: 'number', description: 'Maximum number of results', required: false },
-      { name: 'search_content', type: 'boolean', description: 'Search note content in addition to titles', required: false },
+      {
+        name: 'max_results',
+        type: 'number',
+        description: 'Maximum number of results',
+        required: false,
+      },
+      {
+        name: 'search_content',
+        type: 'boolean',
+        description: 'Search note content in addition to titles',
+        required: false,
+      },
     ],
     capabilities: ['fs:read', 'fs:list'],
   },
@@ -134,7 +169,12 @@ const obsidianSearchVaultTool: Tool = {
       }
       const maxResults = (args.max_results as number) || 20;
       const searchContent = args.search_content !== false;
-      const result = { results: [], query, max_results: maxResults, searched_content: searchContent };
+      const result = {
+        results: [],
+        query,
+        max_results: maxResults,
+        searched_content: searchContent,
+      };
       return {
         toolName: 'obsidian_search_vault',
         success: true,
@@ -158,9 +198,19 @@ const obsidianListNotesTool: Tool = {
     name: 'obsidian_list_notes',
     description: 'List notes in a directory',
     params: [
-      { name: 'directory', type: 'string', description: 'Directory relative to vault root', required: false },
+      {
+        name: 'directory',
+        type: 'string',
+        description: 'Directory relative to vault root',
+        required: false,
+      },
       { name: 'recursive', type: 'boolean', description: 'List recursively', required: false },
-      { name: 'pattern', type: 'string', description: 'Glob pattern to filter notes', required: false },
+      {
+        name: 'pattern',
+        type: 'string',
+        description: 'Glob pattern to filter notes',
+        required: false,
+      },
     ],
     capabilities: ['fs:list'],
   },
@@ -237,7 +287,9 @@ const obsidianCreateWikilinkTool: Tool = {
         toolName: 'obsidian_create_wikilink',
         success: false,
         output: '',
-        error: `Failed to create wikilink: ${error instanceof Error ? error.message : String(error)}`,
+        error: `Failed to create wikilink: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
         durationMs: Date.now() - start,
       };
     }
@@ -249,8 +301,18 @@ const obsidianGraphTool: Tool = {
     name: 'obsidian_graph',
     description: 'Get the note graph (linked notes)',
     params: [
-      { name: 'root_note', type: 'string', description: 'Root note to start from', required: false },
-      { name: 'max_depth', type: 'number', description: 'Maximum traversal depth', required: false },
+      {
+        name: 'root_note',
+        type: 'string',
+        description: 'Root note to start from',
+        required: false,
+      },
+      {
+        name: 'max_depth',
+        type: 'number',
+        description: 'Maximum traversal depth',
+        required: false,
+      },
     ],
     capabilities: ['fs:read', 'fs:list'],
   },

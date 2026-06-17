@@ -17,6 +17,7 @@ cortex plugin install ./manifest.json
 Read a note from the vault.
 
 **Parameters:**
+
 - `path` (string, required) — Path to note relative to vault root
 - `vault_path` (string, optional) — Override default vault path
 
@@ -25,6 +26,7 @@ Read a note from the vault.
 Write or update a note.
 
 **Parameters:**
+
 - `path` (string, required) — Path to note relative to vault root
 - `content` (string, required) — Note content (Markdown)
 - `frontmatter` (string, optional) — JSON string of frontmatter key-values
@@ -34,6 +36,7 @@ Write or update a note.
 Search notes in the vault.
 
 **Parameters:**
+
 - `query` (string, required) — Search query
 - `max_results` (number, optional, default 20) — Maximum results
 - `search_content` (boolean, optional, default true) — Search note content
@@ -43,6 +46,7 @@ Search notes in the vault.
 List notes in a directory.
 
 **Parameters:**
+
 - `directory` (string, optional, default "/") — Directory relative to vault root
 - `recursive` (boolean, optional, default false) — List recursively
 - `pattern` (string, optional) — Glob pattern
@@ -52,6 +56,7 @@ List notes in a directory.
 Create wiki-style links between notes.
 
 **Parameters:**
+
 - `from_note` (string, required) — Source note path
 - `to_note` (string, required) — Target note path
 - `alias` (string, optional) — Display alias
@@ -61,6 +66,7 @@ Create wiki-style links between notes.
 Get the note graph (linked notes).
 
 **Parameters:**
+
 - `root_note` (string, optional) — Root note to start from
 - `max_depth` (number, optional, default 2) — Maximum traversal depth
 

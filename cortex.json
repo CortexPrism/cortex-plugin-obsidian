@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-obsidian",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Read/write to local Obsidian vaults, create wiki-links",
   "kind": "esm",
   "entryPoint": "mod.ts",
