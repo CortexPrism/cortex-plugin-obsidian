@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-obsidian",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Read/write to local Obsidian vaults, create wiki-links",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -8,7 +8,7 @@
   "author": "CortexPrism",
   "license": "MIT",
   "repository": "https://github.com/CortexPrism/cortex-plugin-obsidian",
-  "homepage": "",
+  "homepage": "https://github.com/CortexPrism/cortex-plugin-obsidian",
   "capabilities": [
     "tools",
     "fs:read",
@@ -73,14 +73,14 @@
           "type": "number",
           "description": "Maximum number of results",
           "required": false,
-          "defaultValue": 20
+          "default": 20
         },
         {
           "name": "search_content",
           "type": "boolean",
           "description": "Search note content in addition to titles",
           "required": false,
-          "defaultValue": true
+          "default": true
         }
       ]
     },
@@ -93,14 +93,14 @@
           "type": "string",
           "description": "Directory relative to vault root",
           "required": false,
-          "defaultValue": "/"
+          "default": "/"
         },
         {
           "name": "recursive",
           "type": "boolean",
           "description": "List recursively",
           "required": false,
-          "defaultValue": false
+          "default": false
         },
         {
           "name": "pattern",
@@ -149,20 +149,24 @@
           "type": "number",
           "description": "Maximum traversal depth",
           "required": false,
-          "defaultValue": 2
+          "default": 2
         }
       ]
     }
   ],
   "ui": {
-    "section": "Vault",
-    "fields": [
+    "settings": [
       {
-        "key": "vaultPath",
-        "label": "Vault Path",
-        "type": "text",
-        "description": "Absolute path to Obsidian vault",
-        "required": true
+        "section": "Vault",
+        "fields": [
+          {
+            "key": "vaultPath",
+            "label": "Vault Path",
+            "type": "text",
+            "description": "Absolute path to Obsidian vault",
+            "required": true
+          }
+        ]
       }
     ]
   },
@@ -171,7 +175,9 @@
     "cortex": ">=1.0.0"
   },
   "aiDisclosure": {
-    "tools": ["Claude Code (Anthropic)"],
+    "tools": [
+      "Claude Code (Anthropic)"
+    ],
     "humanReview": true
   }
 }
