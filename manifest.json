@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-obsidian",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Read/write to local Obsidian vaults, create wiki-links",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -73,14 +73,14 @@
           "type": "number",
           "description": "Maximum number of results",
           "required": false,
-          "default": 20
+          "defaultValue": 20
         },
         {
           "name": "search_content",
           "type": "boolean",
           "description": "Search note content in addition to titles",
           "required": false,
-          "default": true
+          "defaultValue": true
         }
       ]
     },
@@ -93,14 +93,14 @@
           "type": "string",
           "description": "Directory relative to vault root",
           "required": false,
-          "default": "/"
+          "defaultValue": "/"
         },
         {
           "name": "recursive",
           "type": "boolean",
           "description": "List recursively",
           "required": false,
-          "default": false
+          "defaultValue": false
         },
         {
           "name": "pattern",
@@ -149,7 +149,7 @@
           "type": "number",
           "description": "Maximum traversal depth",
           "required": false,
-          "default": 2
+          "defaultValue": 2
         }
       ]
     }
@@ -172,7 +172,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "cortex": ">=1.0.0"
+    "cortex": ">=0.51.0"
   },
   "aiDisclosure": {
     "tools": [

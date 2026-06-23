@@ -1,4 +1,4 @@
-import type { PluginContext, Tool, ToolCallResult, ToolContext } from './types.ts';
+import type { PluginContext, Tool, ToolCallResult } from 'cortex/plugins';
 
 let pluginConfig: Record<string, unknown> = {};
 
@@ -31,7 +31,7 @@ const obsidianReadNoteTool: Tool = {
     ],
     capabilities: ['fs:read'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const notePath = args.path;
@@ -85,7 +85,7 @@ const obsidianWriteNoteTool: Tool = {
     ],
     capabilities: ['fs:write'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const notePath = args.path;
@@ -154,7 +154,7 @@ const obsidianSearchVaultTool: Tool = {
     ],
     capabilities: ['fs:read', 'fs:list'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const query = args.query;
@@ -214,7 +214,7 @@ const obsidianListNotesTool: Tool = {
     ],
     capabilities: ['fs:list'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const directory = (args.directory as string) || '/';
@@ -250,7 +250,7 @@ const obsidianCreateWikilinkTool: Tool = {
     ],
     capabilities: ['fs:read', 'fs:write'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const fromNote = args.from_note;
@@ -316,7 +316,7 @@ const obsidianGraphTool: Tool = {
     ],
     capabilities: ['fs:read', 'fs:list'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const rootNote = args.root_note as string | undefined;
